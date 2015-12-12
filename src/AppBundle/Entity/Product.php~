@@ -1,0 +1,125 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="product")
+ * @ORM\HasLifecycleCallbacks()
+ */
+class Product
+{
+    /**
+     * 代码
+     * @ORM\id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    protected $id;
+
+    /**
+     * 编码
+     * @ORM\Column(type="string")
+     */
+    protected $indetifier;
+
+    /**
+     * 名称
+     * @ORM\Column(type="string")
+     */
+    protected $name;
+
+    /**
+     * 原料代码
+     * @ORM\Column(type="integer")
+     */
+    protected $materialID;
+
+    /**
+     * 原料分类 (带头鱼，无头鱼，边角料)
+     * @ORM\Column(type="string")
+     */
+    protected $materialCategogy;
+
+    /**
+     * 调味加工分类 (调味，原味)
+     * @ORM\Column(type="string")
+     */
+    protected $seasonCategory;
+
+    /**
+     * 加工分类 (原条，开板，扒皮，砸压，真空，鱼细丝，鱼粗丝，鱼籽，鱼胃，鱼油，鱼花，鱼边)
+     * @ORM\Column(type="string")
+     */
+    protected $processCategory;
+
+    /**
+     * 商品分类 (硬板，宣板，半宣，半硬)
+     * @ORM\Column(type="string")
+     */
+    protected $productCategory;
+
+    /**
+     * 尺寸
+     * @ORM\Column(type="string")
+     */
+    protected $size;
+
+    /**
+     * 计量单位 (条，斤，kg)
+     * @ORM\Column(type="string")
+     */
+    protected $measurementUnit;
+
+    /**
+     * 规格（数量)
+     * @ORM\Column(type="string")
+     */
+    protected $spec;
+
+    /**
+     * 单价
+     * @ORM\Column(type="integer")
+     */
+    protected $price;
+
+    /**
+     * 备注
+     * @ORM\Column(type="text")
+     */
+    protected $remark;
+
+    /**
+     * 创建用户
+     * @ORM\Column(type="integer")
+     */
+
+    protected $createdUserID;
+    /**
+     * 创建日期
+     * @ORM\Column(type="datetime")
+     */
+    protected $created;
+
+    /**
+     * 更新日期
+     * @ORM\Column(type="datetime")
+     */
+    protected $modified;
+
+    public function __construct()
+    {
+        $this->setCreated(new \DateTime());
+        $this->setUpdated(new \DateTime());
+    }
+
+    /**
+     * @ORM\PreUpdate
+     */
+    public function setUpdatedValue()
+    {
+       $this->setUpdated(new \DateTime());
+    }
+}

@@ -1,0 +1,93 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="customer")
+ * @ORM\HasLifecycleCallbacks()
+ */
+class Customer
+{
+    /**
+     * @ORM\id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    protected $id;
+
+    /**
+     * @ORM\Column(type="string")
+     */
+    protected $name;
+
+    /**
+     * @ORM\Column(type="string")
+     */
+    protected $Province;
+
+    /**
+     * @ORM\Column(type="string")
+     */
+    protected $City;
+
+    /**
+     * @ORM\Column(type="string")
+     */
+    protected $tel1;
+
+    /**
+     * @ORM\Column(type="string")
+     */
+    protected $tel2;
+
+    /**
+     * @ORM\Column(type="string")
+     */
+    protected $tel3;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    protected $totalReceivable;
+
+    /**
+     * @ORM\Column(type="text")
+     */
+    protected $remark;
+
+    /**
+     * 创建用户
+     * @ORM\Column(type="integer")
+     */
+    protected $createdUserID;
+
+    /**
+     * 创建日期
+     * @ORM\Column(type="datetime")
+     */
+    protected $created;
+
+    /**
+     * 更新日期
+     * @ORM\Column(type="datetime")
+     */
+    protected $modified;
+
+    public function __construct()
+    {
+        $this->setCreated(new \DateTime());
+        $this->setUpdated(new \DateTime());
+    }
+
+    /**
+     * @ORM\PreUpdate
+     */
+    public function setUpdatedValue()
+    {
+       $this->setUpdated(new \DateTime());
+    }
+
+}

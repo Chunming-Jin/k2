@@ -1,0 +1,76 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="user")
+ * @ORM\HasLifecycleCallbacks()
+ */
+class User
+{
+    /**
+     * @ORM\id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    protected $id;
+
+    /**
+     * 登录名
+     * @ORM\Column(type="string", unique=true)
+     */
+    protected $tel;
+
+    /**
+     * 登录密码
+     * @ORM\Column(type="string")
+     */
+    protected $password;
+
+    /**
+     * 名称
+     * @ORM\Column(type="string")
+     */
+    protected $name;
+
+    /**
+     * 用户权限
+     * @ORM\Column(type="integer")
+     */
+    protected $Permission;
+
+    /**
+     * 备注
+     * @ORM\Column(type="text")
+     */
+    protected $remark;
+
+    /**
+     * 创建日期
+     * @ORM\Column(type="datetime")
+     */
+    protected $created;
+
+    /**
+     * 更新日期
+     * @ORM\Column(type="datetime")
+     */
+    protected $modified;
+
+    public function __construct()
+    {
+        $this->setCreated(new \DateTime());
+        $this->setUpdated(new \DateTime());
+    }
+
+    /**
+     * @ORM\PreUpdate
+     */
+    public function setUpdatedValue()
+    {
+       $this->setUpdated(new \DateTime());
+    }
+}

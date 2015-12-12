@@ -1,0 +1,156 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="record")
+ * @ORM\HasLifecycleCallbacks()
+ */
+class Record
+{
+    /**
+     * 销售记录号
+     * @ORM\id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    protected $id;
+
+    /**
+     * 票据号
+     * @ORM\Column(type="integer")
+     */
+    protected $ticketID;
+
+    /**
+     * 销售日期
+     * @ORM\Column(type="datetime")
+     */
+    protected $saleDate;
+
+    /**
+     * 品种代码
+     * @ORM\Column(type="integer")
+     */
+    protected $productID;
+
+    /**
+     * 保管仓库
+     * @ORM\Column(type="string")
+     */
+    protected $storage;
+
+    /**
+     * 操作（出库，入库，优惠，退换，数量短缺）
+     * @ORM\Column(type="string")
+     */
+    protected $opration;
+
+    /**
+     * 数量/件
+     * @ORM\Column(type="integer")
+     */
+    protected $countOfUnit;
+
+    /**
+     * 件数
+     * @ORM\Column(type="integer")
+     */
+    protected $countPerUnit;
+
+    /**
+     * 总数量
+     * @ORM\Column(type="integer")
+     */
+    protected $totalCount;
+
+    /**
+     * 单价
+     * @ORM\Column(type="integer")
+     */
+    protected $price;
+
+    /**
+     * 应收款
+     * @ORM\Column(type="integer")
+     */
+    protected $totalPrice;
+
+    /**
+     * 是否已收款
+     * @ORM\Column(type="boolean")
+     */
+    protected $collected;
+
+    /**
+     * 收款的销售记录号
+     * @ORM\Column(type="integer")
+     */
+    protected $collectRecordID;
+
+    /**
+     * 实收款
+     * @ORM\Column(type="integer")
+     */
+    protected $realCollection;
+
+    /**
+     * 客户代码
+     * @ORM\Column(type="integer")
+     */
+    protected $customerID;
+
+    /**
+     * 备注
+     * @ORM\Column(type="text")
+     */
+    protected $remark;
+
+    /**
+     * 作废
+     * @ORM\Column(type="boolean")
+     */
+    protected $invalid;
+
+    /**
+     * 原销售记录
+     * @ORM\Column(type="integer")
+     */
+    protected $orgRecordID;
+
+    /**
+     * 创建用户
+     * @ORM\Column(type="integer")
+     */
+    protected $createdUserID;
+
+    /**
+     * 创建日期
+     * @ORM\Column(type="datetime")
+     */
+    protected $created;
+
+    /**
+     * 更新日期
+     * @ORM\Column(type="datetime")
+     */
+    protected $modified;
+
+    public function __construct()
+    {
+        $this->setCreated(new \DateTime());
+        $this->setUpdated(new \DateTime());
+    }
+
+    /**
+     * @ORM\PreUpdate
+     */
+    public function setUpdatedValue()
+    {
+       $this->setUpdated(new \DateTime());
+    }
+
+}
